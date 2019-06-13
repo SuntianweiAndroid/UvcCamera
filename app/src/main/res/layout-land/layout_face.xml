@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff000000"
+    android:orientation="horizontal"
+    tools:context="com.vinda.ucvcamera.MainActivity"
+    tools:ignore="MergeRootFrame,MissingDefaultResource">
+
+    <com.serenegiant.widget.UVCCameraTextureView
+        android:id="@+id/camera_view_first"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3" />
+
+    <LinearLayout
+        android:id="@+id/show_msg"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@mipmap/backgroud"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="58dp"
+            android:text="888路"
+            android:textColor="#E41E0F"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="票价:2.00元"
+            android:textColor="#E41E0F"
+            android:textSize="45sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
