@@ -132,7 +132,7 @@ void UVCCamera::clearCameraParams() {
 
 //======================================================================
 /**
- * カメラへ接続する
+ * 连接照相机
  */
 int UVCCamera::connect(int vid, int pid, int fd, int busnum, int devaddr, const char *usbfs) {
 	ENTER();
@@ -149,14 +149,14 @@ int UVCCamera::connect(int vid, int pid, int fd, int busnum, int devaddr, const 
 				RETURN(result, int);
 			}
 		}
-		// カメラ機能フラグをクリア
+		// 清除了照相机功能标志
 		clearCameraParams();
 		fd = dup(fd);
-		// 指定したvid,idを持つデバイスを検索, 見つかれば0を返してmDeviceに見つかったデバイスをセットする(既に1回uvc_ref_deviceを呼んである)
+		// 如果找到具有指定的vid、id的设备，则返回0，使mDevice中发现的设备设置(已经一次叫uv_ref device)
 //		result = uvc_find_device2(mContext, &mDevice, vid, pid, NULL, fd);
 		result = uvc_get_device_with_fd(mContext, &mDevice, vid, pid, NULL, fd, busnum, devaddr);
 		if (LIKELY(!result)) {
-			// カメラのopen処理
+			// 相机的开放性处理
 			result = uvc_open(mDevice, &mDeviceHandle);
 			if (LIKELY(!result)) {
 				// open出来た時

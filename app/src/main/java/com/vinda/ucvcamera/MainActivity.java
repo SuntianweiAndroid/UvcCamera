@@ -200,10 +200,11 @@ public class MainActivity extends BaseActivity implements CameraDialog.CameraDia
     protected void onStart() {
         super.onStart();
         mUSBMonitor.register();
+        if (mUVCCameraViewFirst != null) {
+            mUVCCameraViewFirst.onResume();
+        }
 //        if (mUVCCameraViewSecond != null)
 //            mUVCCameraViewSecond.onResume();
-//        if (mUVCCameraViewFirst != null)
-//            mUVCCameraViewFirst.onResume();
 //        if (mUVCCameraViewThird != null)
 //            mUVCCameraViewThird.onResume();
 //        if (mUVCCameraViewFourth != null)
@@ -246,8 +247,9 @@ public class MainActivity extends BaseActivity implements CameraDialog.CameraDia
 //        if (mUVCCameraViewSixth != null)
 //            mUVCCameraViewSixth.onPause();
 //        mCaptureButtonSixth.setVisibility(View.INVISIBLE);
-
-        mUSBMonitor.unregister();//usb管理器解绑
+        if (mUSBMonitor.isRegistered()) {
+            mUSBMonitor.unregister();//usb管理器解绑}
+        }
         super.onStop();
     }
 
@@ -688,7 +690,7 @@ public class MainActivity extends BaseActivity implements CameraDialog.CameraDia
 
     @SuppressLint("CheckResult")
     private void starttimeTask() {
-        Flowable.interval(0, 3, TimeUnit.SECONDS)
+        Flowable.interval(0, 2, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
                     @Override
@@ -774,7 +776,7 @@ public class MainActivity extends BaseActivity implements CameraDialog.CameraDia
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        FileUtils.deleteFile(name.getPath());
+//                        FileUtils.deleteFile(name.getPath());
                     }
 
                     @Override
